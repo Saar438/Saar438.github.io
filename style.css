@@ -1,3 +1,5 @@
+```css
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
 
 /* ========================================
    BASIS
@@ -9,7 +11,9 @@
     box-sizing: border-box;
 }
 
-html {
+html,
+body {
+    width: 100%;
     min-height: 100%;
 }
 
@@ -35,7 +39,7 @@ body {
     width: 100%;
     height: 100%;
 
-    z-index: -1;
+    z-index: 0;
 
     background-image: url("wereldkaart.jpeg");
     background-size: cover;
@@ -43,7 +47,6 @@ body {
     background-repeat: no-repeat;
 }
 
-/* Donkere laag over de wereldkaart */
 .achtergrond::after {
     content: "";
 
@@ -69,7 +72,7 @@ body {
 
 
 /* ========================================
-   MENU BOVENAAN
+   MENU
 ======================================== */
 
 .navbar {
@@ -92,26 +95,18 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.20);
     border-radius: 18px;
 
-    background: rgba(10, 20, 31, 0.68);
+    background: rgba(10, 20, 31, 0.75);
 
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
 
-    box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
 
     z-index: 100;
-
-    transition:
-        background 0.3s ease,
-        box-shadow 0.3s ease;
 }
 
-
-/* Menu wanneer je scrollt */
-
 .navbar.scrolled {
-    background: rgba(7, 15, 25, 0.90);
+    background: rgba(7, 15, 25, 0.92);
 
     box-shadow:
         0 18px 45px rgba(0, 0, 0, 0.35);
@@ -149,11 +144,11 @@ nav a {
 
     display: inline-block;
 
+    padding: 11px 18px;
+
     color: rgba(255, 255, 255, 0.82);
 
     text-decoration: none;
-
-    padding: 11px 18px;
 
     border-radius: 10px;
 
@@ -176,6 +171,7 @@ nav a:hover {
 
 nav a.active {
     color: #ffffff;
+
     background: rgba(255, 255, 255, 0.12);
 }
 
@@ -197,11 +193,13 @@ nav a.active::after {
 
 
 /* ========================================
-   MIDDEN / HERO
+   HERO
 ======================================== */
 
 .hero {
     position: relative;
+
+    z-index: 2;
 
     min-height: 100vh;
 
@@ -210,17 +208,17 @@ nav a.active::after {
     justify-content: center;
 
     padding: 130px 24px 60px;
-
-    z-index: 1;
 }
 
 
 /* ========================================
-   CENTRAAL TEKSTBLOK
+   TEKSTBLOK
 ======================================== */
 
 .tekstblok {
     position: relative;
+
+    z-index: 3;
 
     width: min(690px, 100%);
 
@@ -232,7 +230,7 @@ nav a.active::after {
 
     border-radius: 28px;
 
-    background: rgba(8, 18, 29, 0.72);
+    background: rgba(8, 18, 29, 0.78);
 
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
@@ -240,17 +238,6 @@ nav a.active::after {
     box-shadow:
         0 30px 80px rgba(0, 0, 0, 0.38),
         inset 0 1px 0 rgba(255, 255, 255, 0.10);
-
-    opacity: 1;
-
-    transform: translateY(0);
-}
-
-
-/* Alleen animeren als JavaScript de klasse toevoegt */
-
-.tekstblok.klaar {
-    animation: verschijnen 0.8s ease forwards;
 }
 
 
@@ -271,7 +258,7 @@ nav a.active::after {
 
 
 /* ========================================
-   KLEINE TITEL
+   KLEINE TEKST
 ======================================== */
 
 .kleine-tekst {
@@ -313,7 +300,7 @@ h1 span {
 
 
 /* ========================================
-   TEKST
+   INTRODUCTIETEKST
 ======================================== */
 
 .intro {
@@ -382,7 +369,16 @@ h1 span {
    ANIMATIE
 ======================================== */
 
+.tekstblok.klaar {
+    animation:
+        verschijnen
+        0.8s
+        ease
+        forwards;
+}
+
 @keyframes verschijnen {
+
     from {
         opacity: 0;
         transform: translateY(20px);
@@ -396,7 +392,7 @@ h1 span {
 
 
 /* ========================================
-   MOBIELE VERSIE
+   MOBIEL
 ======================================== */
 
 @media (max-width: 650px) {
