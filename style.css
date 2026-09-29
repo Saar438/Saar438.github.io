@@ -1,7 +1,6 @@
 ```css
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
 
-
 /* ========================================
    BASIS
 ======================================== */
@@ -21,7 +20,6 @@ body {
     overflow-x: hidden;
 
     font-family: "DM Sans", Arial, sans-serif;
-
     color: #ffffff;
 
     background: #101a25;
@@ -36,25 +34,26 @@ body {
     position: fixed;
     inset: 0;
 
-    z-index: -2;
+    width: 100%;
+    height: 100%;
+
+    z-index: -1;
 
     background-image: url("wereldkaart.jpeg");
-
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-
-    transform: scale(1.02);
 }
 
-
 /* Donkere laag over de wereldkaart */
-
 .achtergrond::after {
     content: "";
 
     position: absolute;
     inset: 0;
+
+    width: 100%;
+    height: 100%;
 
     background:
         linear-gradient(
@@ -63,7 +62,6 @@ body {
             rgba(7, 15, 25, 0.35) 50%,
             rgba(7, 15, 25, 0.55) 100%
         ),
-
         linear-gradient(
             0deg,
             rgba(7, 15, 25, 0.50),
@@ -85,18 +83,15 @@ body {
     transform: translateX(-50%);
 
     width: min(1120px, calc(100% - 48px));
-
-    height: 72px;
+    min-height: 72px;
 
     padding: 0 28px;
 
     display: flex;
-
     align-items: center;
     justify-content: space-between;
 
     border: 1px solid rgba(255, 255, 255, 0.20);
-
     border-radius: 18px;
 
     background: rgba(10, 20, 31, 0.68);
@@ -107,7 +102,7 @@ body {
     box-shadow:
         0 15px 45px rgba(0, 0, 0, 0.25);
 
-    z-index: 10;
+    z-index: 100;
 
     transition:
         background 0.3s ease,
@@ -131,15 +126,12 @@ body {
 
 .logo {
     font-size: 16px;
-
     font-weight: 700;
-
     letter-spacing: 3px;
 }
 
 .logo span {
     color: #e8d7ad;
-
     font-weight: 500;
 }
 
@@ -150,14 +142,14 @@ body {
 
 nav {
     display: flex;
-
     align-items: center;
-
     gap: 8px;
 }
 
 nav a {
     position: relative;
+
+    display: inline-block;
 
     color: rgba(255, 255, 255, 0.82);
 
@@ -168,7 +160,6 @@ nav a {
     border-radius: 10px;
 
     font-size: 14px;
-
     font-weight: 600;
 
     transition:
@@ -176,9 +167,6 @@ nav a {
         color 0.25s ease,
         transform 0.25s ease;
 }
-
-
-/* Hover */
 
 nav a:hover {
     color: #ffffff;
@@ -188,17 +176,10 @@ nav a:hover {
     transform: translateY(-1px);
 }
 
-
-/* Actieve pagina */
-
 nav a.active {
     color: #ffffff;
-
     background: rgba(255, 255, 255, 0.12);
 }
-
-
-/* Lijntje onder actieve pagina */
 
 nav a.active::after {
     content: "";
@@ -207,7 +188,6 @@ nav a.active::after {
 
     left: 18px;
     right: 18px;
-
     bottom: 5px;
 
     height: 2px;
@@ -223,17 +203,17 @@ nav a.active::after {
 ======================================== */
 
 .hero {
+    position: relative;
+
     min-height: 100vh;
 
     display: flex;
-
     align-items: center;
     justify-content: center;
 
-    padding:
-        130px
-        24px
-        60px;
+    padding: 130px 24px 60px;
+
+    z-index: 1;
 }
 
 
@@ -246,35 +226,33 @@ nav a.active::after {
 
     width: min(690px, 100%);
 
-    padding:
-        58px
-        62px
-        62px;
+    padding: 58px 62px 62px;
 
     text-align: center;
 
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.22);
 
     border-radius: 28px;
 
-    background:
-        rgba(8, 18, 29, 0.68);
+    background: rgba(8, 18, 29, 0.72);
 
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 
     box-shadow:
         0 30px 80px rgba(0, 0, 0, 0.38),
+        inset 0 1px 0 rgba(255, 255, 255, 0.10);
 
-        inset
-        0 1px 0
-        rgba(255, 255, 255, 0.10);
+    opacity: 1;
 
-    opacity: 0;
+    transform: translateY(0);
+}
 
-    transform: translateY(20px);
+
+/* Alleen animeren als JavaScript de klasse toevoegt */
+
+.tekstblok.klaar {
+    animation: verschijnen 0.8s ease forwards;
 }
 
 
@@ -284,13 +262,9 @@ nav a.active::after {
 
 .lijn {
     width: 48px;
-
     height: 3px;
 
-    margin:
-        0
-        auto
-        20px;
+    margin: 0 auto 20px;
 
     border-radius: 10px;
 
@@ -308,7 +282,6 @@ nav a.active::after {
     color: #e8d7ad;
 
     font-size: 12px;
-
     font-weight: 700;
 
     letter-spacing: 4px;
@@ -320,17 +293,14 @@ nav a.active::after {
 ======================================== */
 
 h1 {
+    margin: 0;
+
     font-family:
         "Playfair Display",
         Georgia,
         serif;
 
-    font-size:
-        clamp(
-            44px,
-            6vw,
-            70px
-        );
+    font-size: clamp(44px, 6vw, 70px);
 
     line-height: 1.03;
 
@@ -351,18 +321,9 @@ h1 span {
 .intro {
     max-width: 520px;
 
-    margin:
-        24px
-        auto
-        32px;
+    margin: 24px auto 32px;
 
-    color:
-        rgba(
-            255,
-            255,
-            255,
-            0.78
-        );
+    color: rgba(255, 255, 255, 0.78);
 
     font-size: 16px;
 
@@ -378,15 +339,13 @@ h1 span {
     display: inline-flex;
 
     align-items: center;
-
     justify-content: center;
 
     gap: 12px;
 
-    padding:
-        14px
-        22px;
+    padding: 14px 22px;
 
+    border: none;
     border-radius: 12px;
 
     color: #18222d;
@@ -396,8 +355,9 @@ h1 span {
     text-decoration: none;
 
     font-size: 14px;
-
     font-weight: 700;
+
+    cursor: pointer;
 
     transition:
         transform 0.25s ease,
@@ -405,24 +365,16 @@ h1 span {
         filter 0.25s ease;
 }
 
-
-/* Pijltje */
-
 .knop span {
     font-size: 19px;
-
-    line-height: 0;
+    line-height: 1;
 }
-
-
-/* Hover */
 
 .knop:hover {
     transform: translateY(-3px);
 
     box-shadow:
-        0 13px 30px
-        rgba(0, 0, 0, 0.32);
+        0 13px 30px rgba(0, 0, 0, 0.32);
 
     filter: brightness(1.06);
 }
@@ -432,29 +384,15 @@ h1 span {
    ANIMATIE
 ======================================== */
 
-.tekstblok.klaar {
-    animation:
-        verschijnen
-        0.8s
-        ease
-        forwards;
-}
-
-
 @keyframes verschijnen {
-
     from {
         opacity: 0;
-
-        transform:
-            translateY(20px);
+        transform: translateY(20px);
     }
 
     to {
         opacity: 1;
-
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
 }
 
@@ -468,80 +406,58 @@ h1 span {
     .navbar {
         top: 12px;
 
-        width:
-            calc(100% - 24px);
+        width: calc(100% - 24px);
 
-        height: 64px;
+        min-height: 64px;
 
-        padding:
-            0
-            16px;
+        padding: 0 16px;
 
         border-radius: 15px;
     }
 
-
     .logo {
         font-size: 13px;
-
         letter-spacing: 2px;
     }
-
 
     nav {
         gap: 4px;
     }
 
-
     nav a {
-        padding:
-            9px
-            11px;
-
+        padding: 9px 11px;
         font-size: 12px;
     }
 
-
     nav a.active::after {
         left: 11px;
-
         right: 11px;
     }
 
-
     .hero {
-        padding:
-            105px
-            14px
-            30px;
+        padding: 105px 14px 30px;
     }
 
-
     .tekstblok {
-        padding:
-            42px
-            25px
-            45px;
+        width: 100%;
+
+        padding: 42px 25px 45px;
 
         border-radius: 22px;
     }
-
 
     h1 {
         font-size: 43px;
     }
 
-
     .intro {
         font-size: 14px;
-
         line-height: 1.65;
     }
 
-
     .kleine-tekst {
         font-size: 10px;
-
         letter-spacing: 3px;
     }
 }
+```
