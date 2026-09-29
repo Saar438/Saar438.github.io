@@ -1,237 +1,548 @@
-/* Algemene instellingen */
+```css
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
+
+
+/* ========================================
+   BASIS
+======================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    min-height: 100%;
+}
+
 body {
-    font-family: Arial, sans-serif;
-
-    /* Jouw wereldkaart als achtergrond */
-    background-image: url("wereldkaart.jpg");
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-
     min-height: 100vh;
-    color: white;
+    overflow-x: hidden;
+
+    font-family: "DM Sans", Arial, sans-serif;
+
+    color: #ffffff;
+
+    background: #101a25;
 }
 
 
-/* Donkere laag over de achtergrond */
-body::before {
-    content: "";
+/* ========================================
+   WERELDKAART ACHTERGROND
+======================================== */
+
+.achtergrond {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-    z-index: -1;
+
+    z-index: -2;
+
+    background-image: url("wereldkaart.jpeg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    transform: scale(1.02);
 }
 
 
-/* Bovenste balk */
-.topbar {
-    width: 100%;
-    height: 80px;
+/* Donkere laag over de wereldkaart */
 
-    background: rgba(10, 20, 35, 0.90);
+.achtergrond::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(7, 15, 25, 0.75) 0%,
+            rgba(7, 15, 25, 0.35) 50%,
+            rgba(7, 15, 25, 0.55) 100%
+        ),
+
+        linear-gradient(
+            0deg,
+            rgba(7, 15, 25, 0.50),
+            transparent 50%
+        );
+}
+
+
+/* ========================================
+   MENU BOVENAAN
+======================================== */
+
+.navbar {
+    position: fixed;
+
+    top: 24px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: min(1120px, calc(100% - 48px));
+
+    height: 72px;
+
+    padding: 0 28px;
 
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 40px;
+    border: 1px solid rgba(255, 255, 255, 0.20);
 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    border-radius: 18px;
+
+    background: rgba(10, 20, 31, 0.68);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.25);
+
+    z-index: 10;
+
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 
-/* Logo */
+/* Menu wanneer je scrollt */
+
+.navbar.scrolled {
+    background: rgba(7, 15, 25, 0.90);
+
+    box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.35);
+}
+
+
+/* ========================================
+   LOGO
+======================================== */
+
 .logo {
-    font-size: 26px;
-    font-weight: bold;
+    font-size: 16px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: #e8d7ad;
+
+    font-weight: 500;
 }
 
 
-/* Zoekbalk */
-.search {
+/* ========================================
+   NAVIGATIE
+======================================== */
+
+nav {
     display: flex;
+
+    align-items: center;
+
     gap: 8px;
 }
 
-.search input {
-    width: 300px;
-    padding: 12px 15px;
+nav a {
+    position: relative;
 
-    border: none;
-    border-radius: 6px;
+    color: rgba(255, 255, 255, 0.82);
 
-    font-size: 16px;
-    outline: none;
-}
-
-.search button {
-    padding: 12px 20px;
-
-    border: none;
-    border-radius: 6px;
-
-    background: #d8c9a5;
-    color: #222;
-
-    font-size: 16px;
-    cursor: pointer;
-}
-
-.search button:hover {
-    background: #fff;
-}
-
-
-/* Hoofdcontainer */
-.container {
-    display: flex;
-
-    width: 90%;
-    max-width: 1200px;
-
-    margin: 50px auto;
-
-    gap: 30px;
-}
-
-
-/* Menu */
-.menu {
-    width: 230px;
-
-    background: rgba(10, 20, 35, 0.90);
-
-    padding: 25px;
-
-    border-radius: 10px;
-
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-}
-
-.menu h2 {
-    margin-bottom: 20px;
-
-    color: #d8c9a5;
-}
-
-
-.menu ul {
-    list-style: none;
-}
-
-
-.menu li {
-    margin-bottom: 10px;
-}
-
-
-.menu a {
-    display: block;
-
-    padding: 12px;
-
-    color: white;
     text-decoration: none;
 
-    border-radius: 5px;
-
-    transition: 0.3s;
-}
-
-
-.menu a:hover {
-    background: #d8c9a5;
-    color: #222;
-}
-
-
-/* Informatieblok */
-.content {
-    flex: 1;
-
-    min-height: 500px;
-
-    background: rgba(255, 255, 255, 0.92);
-
-    color: #222;
-
-    padding: 40px;
+    padding: 11px 18px;
 
     border-radius: 10px;
 
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+    font-size: 14px;
+
+    font-weight: 600;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
 }
 
 
-.content h1 {
-    margin-bottom: 20px;
+/* Hover */
 
-    color: #243447;
+nav a:hover {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.12);
+
+    transform: translateY(-1px);
 }
 
 
-.content h2 {
-    margin-top: 30px;
-    margin-bottom: 15px;
+/* Actieve pagina */
 
-    color: #243447;
+nav a.active {
+    color: #ffffff;
+
+    background: rgba(255, 255, 255, 0.12);
 }
 
 
-.content p {
-    line-height: 1.7;
-    margin-bottom: 15px;
+/* Lijntje onder actieve pagina */
+
+nav a.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 18px;
+    right: 18px;
+
+    bottom: 5px;
+
+    height: 2px;
+
+    border-radius: 10px;
+
+    background: #e8d7ad;
 }
 
 
-/* Footer */
-footer {
+/* ========================================
+   MIDDEN / HERO
+======================================== */
+
+.hero {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding:
+        130px
+        24px
+        60px;
+}
+
+
+/* ========================================
+   CENTRAAL TEKSTBLOK
+======================================== */
+
+.tekstblok {
+    position: relative;
+
+    width: min(690px, 100%);
+
+    padding:
+        58px
+        62px
+        62px;
+
     text-align: center;
 
-    padding: 20px;
+    border:
+        1px solid
+        rgba(255, 255, 255, 0.22);
 
-    background: rgba(10, 20, 35, 0.90);
+    border-radius: 28px;
 
-    margin-top: 30px;
+    background:
+        rgba(8, 18, 29, 0.68);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.38),
+
+        inset
+        0 1px 0
+        rgba(255, 255, 255, 0.10);
+
+    opacity: 0;
+
+    transform: translateY(20px);
 }
 
 
-/* Mobiele versie */
-@media (max-width: 700px) {
+/* ========================================
+   LIJNTJE
+======================================== */
 
-    .topbar {
-        height: auto;
+.lijn {
+    width: 48px;
 
-        flex-direction: column;
+    height: 3px;
 
-        gap: 15px;
+    margin:
+        0
+        auto
+        20px;
 
-        padding: 20px;
+    border-radius: 10px;
+
+    background: #e8d7ad;
+}
+
+
+/* ========================================
+   KLEINE TITEL
+======================================== */
+
+.kleine-tekst {
+    margin-bottom: 15px;
+
+    color: #e8d7ad;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 4px;
+}
+
+
+/* ========================================
+   HOOFDTITEL
+======================================== */
+
+h1 {
+    font-family:
+        "Playfair Display",
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            44px,
+            6vw,
+            70px
+        );
+
+    line-height: 1.03;
+
+    font-weight: 500;
+
+    letter-spacing: -1.5px;
+}
+
+h1 span {
+    color: #e8d7ad;
+}
+
+
+/* ========================================
+   TEKST
+======================================== */
+
+.intro {
+    max-width: 520px;
+
+    margin:
+        24px
+        auto
+        32px;
+
+    color:
+        rgba(
+            255,
+            255,
+            255,
+            0.78
+        );
+
+    font-size: 16px;
+
+    line-height: 1.75;
+}
+
+
+/* ========================================
+   KNOP
+======================================== */
+
+.knop {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    padding:
+        14px
+        22px;
+
+    border-radius: 12px;
+
+    color: #18222d;
+
+    background: #e8d7ad;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+}
+
+
+/* Pijltje */
+
+.knop span {
+    font-size: 19px;
+
+    line-height: 0;
+}
+
+
+/* Hover */
+
+.knop:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 13px 30px
+        rgba(0, 0, 0, 0.32);
+
+    filter: brightness(1.06);
+}
+
+
+/* ========================================
+   ANIMATIE
+======================================== */
+
+.tekstblok.klaar {
+    animation:
+        verschijnen
+        0.8s
+        ease
+        forwards;
+}
+
+
+@keyframes verschijnen {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
     }
 
-    .search {
-        width: 100%;
-    }
+    to {
+        opacity: 1;
 
-    .search input {
-        width: 100%;
-    }
-
-    .container {
-        flex-direction: column;
-    }
-
-    .menu {
-        width: 100%;
-    }
-
-    .content {
-        padding: 25px;
+        transform:
+            translateY(0);
     }
 }
+
+
+/* ========================================
+   MOBIELE VERSIE
+======================================== */
+
+@media (max-width: 650px) {
+
+    .navbar {
+        top: 12px;
+
+        width:
+            calc(100% - 24px);
+
+        height: 64px;
+
+        padding:
+            0
+            16px;
+
+        border-radius: 15px;
+    }
+
+
+    .logo {
+        font-size: 13px;
+
+        letter-spacing: 2px;
+    }
+
+
+    nav {
+        gap: 4px;
+    }
+
+
+    nav a {
+        padding:
+            9px
+            11px;
+
+        font-size: 12px;
+    }
+
+
+    nav a.active::after {
+        left: 11px;
+
+        right: 11px;
+    }
+
+
+    .hero {
+        padding:
+            105px
+            14px
+            30px;
+    }
+
+
+    .tekstblok {
+        padding:
+            42px
+            25px
+            45px;
+
+        border-radius: 22px;
+    }
+
+
+    h1 {
+        font-size: 43px;
+    }
+
+
+    .intro {
+        font-size: 14px;
+
+        line-height: 1.65;
+    }
+
+
+    .kleine-tekst {
+        font-size: 10px;
+
+        letter-spacing: 3px;
+    }
+}
+```

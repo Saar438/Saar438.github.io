@@ -1,23 +1,71 @@
-<!DOCTYPE html> <!--homepage-->
-<html> <!--html element-->
-   <head>
-       <title>Hallo, ik ben Saar</title>
-       <link rel="stylesheet" href="style.css">
-       <meta charset="utf-8">
-   </head>
-   <body>
-       <h1>Hier vertel ik wat over mezelf</h1>
+```html
+<!DOCTYPE html>
+<html lang="nl">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Pagina 2 - Wereldreis</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
 
-       <ul>
-           <li><a href="index.html">★ Homepage</a></li>
-           <li><a href="pagina2.html">★ About me</a></li>
-           <li><a href="informatie.html">★ Informatie</a></li>
-       </ul>
+<body>
 
+    <!-- Achtergrond -->
+    <div class="achtergrond"></div>
 
-      
-   </body>
+    <!-- Menu bovenaan -->
+    <header class="navbar">
+
+        <div class="logo">
+            WERELD<span>REIS</span>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="pagina2.html" class="active">Pagina 2</a>
+        </nav>
+
+    </header>
+
+    <!-- Midden van de pagina -->
+    <main class="hero">
+
+        <section class="tekstblok">
+
+            <div class="lijn"></div>
+
+            <p class="kleine-tekst">
+                PAGINA 2
+            </p>
+
+            <h1>
+                Jouw volgende<br>
+                <span>avontuur.</span>
+            </h1>
+
+            <p class="intro">
+                Dit is pagina 2 van jouw website.
+                Hier kun je informatie plaatsen over landen,
+                reizen, bestemmingen, foto's of andere onderwerpen.
+            </p>
+
+            <a class="knop" href="index.html">
+                <span>←</span>
+                Terug naar home
+            </a>
+
+        </section>
+
+    </main>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
 </html>
+```
